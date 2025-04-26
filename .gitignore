@@ -1,3 +1,5 @@
 # Este archivo .gitignore ignorará la carpeta node_modules
 
-node_modules/
+node_modules/*
+dist/*
+package-lock.json
