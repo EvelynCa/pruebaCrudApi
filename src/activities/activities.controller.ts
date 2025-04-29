@@ -8,7 +8,10 @@ import { ParseIntPipe } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { Body } from '@nestjs/common';
 import { Put } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/login/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('activities')
 export class ActivitiesController {
 

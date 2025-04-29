@@ -14,8 +14,8 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
     
     @Post()
-    create(@Body() dto: UserDto) {
-        return this.userService.create(dto);
+    create(@Body() userDto: UserDto) {
+        return this.userService.create(userDto);
     }
     
     @Get()
@@ -29,7 +29,7 @@ export class UserController {
     }
     
     @Put('update/:id')
-    update(@Param('id', ParseIntPipe) id: number, @Body() dto: Partial<UserDto>) {
-        return this.userService.update(id, dto);
+    update(@Param('id', ParseIntPipe) id: number, @Body() userDto: Partial<UserDto>) {
+        return this.userService.update(id, userDto);
     }
 }
