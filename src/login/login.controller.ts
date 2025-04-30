@@ -20,7 +20,7 @@ export class LoginController {
     
   }
 
-  @Post('login')
+  @Post('')
   login(@Body() credentials: { email: string; password: string }) {
     return this.loginService.login(credentials.email, credentials.password);
   }
