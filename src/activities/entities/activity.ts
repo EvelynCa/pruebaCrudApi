@@ -8,10 +8,7 @@ export class Activity {
   @Column()
   name: string;
 
-  @Column()
-  description: string;
-
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
   @Column({ default: false })

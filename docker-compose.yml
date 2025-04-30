@@ -17,6 +17,8 @@ services:
       - DB_USER=root
       - DB_PASS=root
       - DB_NAME=pruebaCrud
+    networks:
+      - app-network
 
   db:
     image: mysql:8
@@ -29,6 +31,24 @@ services:
       - '3307:3306'
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  frontend:
+    build: ../appfront
+    container_name: react-frontend
+    ports:
+       - '3002:80'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+    networks:
+      - app-network
 
 volumes:
   db_data:
+
+networks:
+  app-network:
+    driver: bridge

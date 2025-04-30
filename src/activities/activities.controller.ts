@@ -11,7 +11,7 @@ import { Put } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/login/jwt-auth.guard';
 
-@UseGuards(JwtAuthGuard)
+//@UseGuards(JwtAuthGuard)
 @Controller('activities')
 export class ActivitiesController {
 
@@ -19,6 +19,7 @@ export class ActivitiesController {
 
     @Post()
     create(@Body() dto: ActivityDto) {
+      console.log(dto)
       return this.activityService.create(dto);
     }
   
