@@ -19,13 +19,29 @@ export class ActivitiesService {
         }
     
         async findOne(id: number): Promise<Activity> {
-            const user = await this.repositoryUser.findOneBy({ id });
-            if (!user) throw new NotFoundException('Tarea no encontrada');
-            return user;
+            const array = await this.repositoryUser.findOneBy({ id });
+            if (!array) throw new NotFoundException('Tarea no encontrada');
+            return array;
+        }
+
+        async findByUser(id: number) : Promise<Activity[]>  {
+            const array = await this.repositoryUser.find({ where: { idUser: id , activated: true} });
+            if (!array) throw new NotFoundException('Tarea no encontradas');
+            console.log(array)
+            return array;
         }
     
-        async update(id: number, dto: Partial<ActivityDto>): Promise<Activity> {
-            await this.repositoryUser.update(id, dto);
+        async update(id: number): Promise<Activity> {
+            const activity = await this.findOne(id)
+            activity.activated = false;
+            await this.repositoryUser.update(id, activity);
+            return this.findOne(id);
+        }
+
+        async updateCompleted(id: number): Promise<Activity> {
+            const activity = await this.findOne(id)
+            activity.completed = true;
+            await this.repositoryUser.update(id, activity);
             return this.findOne(id);
         }
 }

@@ -13,4 +13,10 @@ export class Activity {
 
   @Column({ default: false })
   completed: boolean;
+  
+  @Column()
+  idUser: number;
+
+  @Column({ default: true })
+  activated: boolean;
 }

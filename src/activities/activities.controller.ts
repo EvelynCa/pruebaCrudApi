@@ -28,13 +28,18 @@ export class ActivitiesController {
       return this.activityService.findAll();
     }
   
-    @Get(':id')
-    findOne(@Param('id', ParseIntPipe) id: number) {
-      return this.activityService.findOne(id);
+    @Get('user/:id')
+    async findOne(@Param('id', ParseIntPipe) id: number) {
+       return await this.activityService.findByUser(id);
     }
   
     @Put('update/:id')
-    update(@Param('id', ParseIntPipe) id: number, @Body() dto: Partial<ActivityDto>) {
-      return this.activityService.update(id, dto);
+    update(@Param('id', ParseIntPipe) id: number) {
+      return this.activityService.update(id);
+    }
+
+    @Put('completed/:id')
+    completed(@Param('id', ParseIntPipe) id: number) {
+      return this.activityService.updateCompleted(id);
     }
 }

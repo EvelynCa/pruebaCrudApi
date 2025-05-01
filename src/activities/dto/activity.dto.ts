@@ -4,5 +4,7 @@ export interface ActivityDto {
     description: string;
     createdAt: Date;
     completed?: boolean;
+    idUser: number;
+    activated?: boolean;
 }
 
